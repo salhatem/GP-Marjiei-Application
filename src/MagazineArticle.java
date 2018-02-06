@@ -9,5 +9,6 @@
  * @author Shatha Suliman
  */
 public class MagazineArticle extends ReferenceDocument {
-    
+    private String MagazineName;
+    private String Month;
 }

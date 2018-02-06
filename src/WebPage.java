@@ -8,6 +8,8 @@
  *
  * @author Shatha Suliman
  */
+import java.util.Date;
 public class WebPage extends ReferenceDocument {
-    
+    private Date AccessDate;
+    private String URL;
 }

@@ -9,5 +9,6 @@
  * @author Shatha Suliman
  */
 public class JournalArticle extends ReferenceDocument {
-    
+    private String JournalName;
+    private int Volume;
 }

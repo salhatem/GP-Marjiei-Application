@@ -9,5 +9,6 @@
  * @author Shatha Suliman
  */
 public class ConferenceProceeding extends ReferenceDocument {
-    
+    private String ConferenceName;
+    private String Place;
 }

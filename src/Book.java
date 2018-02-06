@@ -9,5 +9,6 @@
  * @author Shatha Suliman
  */
 public class Book extends ReferenceDocument {
+    private int Edition;
     
 }
