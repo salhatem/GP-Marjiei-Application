@@ -12,16 +12,36 @@ import javax.swing.table.DefaultTableModel;
  * @author Shatha Suliman
  */
 public class Library extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Library
      */
+    
+    DefaultTableModel model;
+    
     public Library() {
         initComponents();
         
-     //   CreateColumns(); 
+        CreateColumns(); 
         
        // sort();
+    }
+    
+    private void CreateColumns()
+    {
+        model = (DefaultTableModel) DocsList.getModel();
+        
+        model.addColumn("تاريخ الإضافة");
+        model.addColumn("سنة النشر");
+        model.addColumn("الناشر");
+        model.addColumn("المؤلف");
+        model.addColumn("العنوان");
+    }
+
+    private void Populate(String date, String year, String publisher, String author, String title)
+    {
+        String[] DataRaw = {date, year, publisher, author, title};
+        model.addRow(DataRaw);
     }
     
     /**
@@ -48,6 +68,8 @@ public class Library extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jScrollPane1.setAutoscrolls(true);
 
         DocsList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,24 +190,24 @@ public class Library extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-     
-       int index = add.getSelectedIndex();
+
+        int index = add.getSelectedIndex();
         switch ( index )
         {
-            case 0: 
-                 // Code for importing file here. 
-            
-                break;
-            case 1: 
-                  // Code for add entry manually here. 
-           addManuallyform frame = new addManuallyform();
-           frame.setVisible(true);
-           
-                break;
-            case 2: 
-                 // Code for creating folder here. 
-                
-        } // End Switch Statment. 
+            case 0:
+            // Code for importing file here.
+
+            break;
+            case 1:
+            // Code for add entry manually here.
+            addManuallyform frame = new addManuallyform();
+            frame.setVisible(true);
+
+            break;
+            case 2:
+            // Code for creating folder here.
+
+        } // End Switch Statment.
     }//GEN-LAST:event_addActionPerformed
 
     private void addPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_addPopupMenuWillBecomeVisible
