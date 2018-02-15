@@ -240,7 +240,9 @@ public class Library extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Library.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        DatabaseConnect connection = new DatabaseConnect(); // To conect to Database. 
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
