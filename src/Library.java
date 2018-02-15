@@ -38,7 +38,7 @@ public class Library extends javax.swing.JFrame {
         model.addColumn("العنوان");
     }
 
-    private void Populate(String date, String year, String publisher, String author, String title)
+    private void addRaw(String date, String year, String publisher, String author, String title)
     {
         String[] DataRaw = {date, year, publisher, author, title};
         model.addRow(DataRaw);
