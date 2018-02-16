@@ -11,4 +11,24 @@
 public class Book extends ReferenceDocument {
     private int Edition;
     
+    // Constructors
+       public Book ()
+    {
+        Title = " "; 
+        Author = " "; 
+        Publisher = " "; 
+        PublishYear = 0;
+        PagesNo = " ";
+        Edition = 0;
+    }
+       
+    public Book (String title, String author, String publisher, int pYear, String pages, int edition)
+    {
+        Title = title; 
+        Author = author; 
+        Publisher = publisher; 
+        PublishYear = pYear;
+        PagesNo = pages;
+        Edition = edition; 
+    }
 }
