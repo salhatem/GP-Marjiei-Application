@@ -10,4 +10,22 @@
  */
 public class Other extends ReferenceDocument {
     
+     // Constructors
+       public Other ()
+    {
+        Title = " "; 
+        Author = " "; 
+        Publisher = " "; 
+        PublishYear = 0;
+        PagesNo = " ";
+    }
+       
+    public Other (String title, String author, String publisher, int pYear, String pages)
+    {
+        Title = title; 
+        Author = author; 
+        Publisher = publisher; 
+        PublishYear = pYear;
+        PagesNo = pages;
+    }
 }
