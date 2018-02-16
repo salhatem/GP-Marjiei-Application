@@ -31,4 +31,18 @@ public class Book extends ReferenceDocument {
         PagesNo = pages;
         Edition = edition; 
     }
+
+    /**
+     * @return the Edition
+     */
+    public int getEdition() {
+        return Edition;
+    }
+
+    /**
+     * @param Edition the Edition to set
+     */
+    public void setEdition(int Edition) {
+        this.Edition = Edition;
+    }
 }

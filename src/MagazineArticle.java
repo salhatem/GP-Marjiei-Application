@@ -34,4 +34,32 @@ public class MagazineArticle extends ReferenceDocument {
         MagazineName = mName;
         Month = month; 
     }
+
+    /**
+     * @return the MagazineName
+     */
+    public String getMagazineName() {
+        return MagazineName;
+    }
+
+    /**
+     * @param MagazineName the MagazineName to set
+     */
+    public void setMagazineName(String MagazineName) {
+        this.MagazineName = MagazineName;
+    }
+
+    /**
+     * @return the Month
+     */
+    public String getMonth() {
+        return Month;
+    }
+
+    /**
+     * @param Month the Month to set
+     */
+    public void setMonth(String Month) {
+        this.Month = Month;
+    }
 }

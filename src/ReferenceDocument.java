@@ -15,5 +15,75 @@ public abstract class ReferenceDocument {
     protected String Publisher;
     protected int PublishYear;
     protected String PagesNo;
+
+    /**
+     * @return the Title
+     */
+    public String getTitle() {
+        return Title;
+    }
+
+    /**
+     * @param Title the Title to set
+     */
+    public void setTitle(String Title) {
+        this.Title = Title;
+    }
+
+    /**
+     * @return the Author
+     */
+    public String getAuthor() {
+        return Author;
+    }
+
+    /**
+     * @param Author the Author to set
+     */
+    public void setAuthor(String Author) {
+        this.Author = Author;
+    }
+
+    /**
+     * @return the Publisher
+     */
+    public String getPublisher() {
+        return Publisher;
+    }
+
+    /**
+     * @param Publisher the Publisher to set
+     */
+    public void setPublisher(String Publisher) {
+        this.Publisher = Publisher;
+    }
+
+    /**
+     * @return the PublishYear
+     */
+    public int getPublishYear() {
+        return PublishYear;
+    }
+
+    /**
+     * @param PublishYear the PublishYear to set
+     */
+    public void setPublishYear(int PublishYear) {
+        this.PublishYear = PublishYear;
+    }
+
+    /**
+     * @return the PagesNo
+     */
+    public String getPagesNo() {
+        return PagesNo;
+    }
+
+    /**
+     * @param PagesNo the PagesNo to set
+     */
+    public void setPagesNo(String PagesNo) {
+        this.PagesNo = PagesNo;
+    }
     
 }

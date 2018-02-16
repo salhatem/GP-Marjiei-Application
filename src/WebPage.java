@@ -10,6 +10,7 @@
  */
 import java.util.Date;
 public class WebPage extends ReferenceDocument {
+    
     private Date AccessDate;
     private String URL;
     
@@ -34,5 +35,33 @@ public class WebPage extends ReferenceDocument {
         PagesNo = pages;
         AccessDate = aDate;
         URL = url; 
+    }
+    
+    /**
+     * @return the AccessDate
+     */
+    public Date getAccessDate() {
+        return AccessDate;
+    }
+
+    /**
+     * @param AccessDate the AccessDate to set
+     */
+    public void setAccessDate(Date AccessDate) {
+        this.AccessDate = AccessDate;
+    }
+
+    /**
+     * @return the URL
+     */
+    public String getURL() {
+        return URL;
+    }
+
+    /**
+     * @param URL the URL to set
+     */
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 }

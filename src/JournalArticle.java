@@ -34,4 +34,32 @@ public class JournalArticle extends ReferenceDocument {
         JournalName = jName;
         Volume = volume;
     }
+
+    /**
+     * @return the JournalName
+     */
+    public String getJournalName() {
+        return JournalName;
+    }
+
+    /**
+     * @param JournalName the JournalName to set
+     */
+    public void setJournalName(String JournalName) {
+        this.JournalName = JournalName;
+    }
+
+    /**
+     * @return the Volume
+     */
+    public int getVolume() {
+        return Volume;
+    }
+
+    /**
+     * @param Volume the Volume to set
+     */
+    public void setVolume(int Volume) {
+        this.Volume = Volume;
+    }
 }

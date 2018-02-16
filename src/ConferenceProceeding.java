@@ -34,4 +34,32 @@ public class ConferenceProceeding extends ReferenceDocument {
         ConferenceName = cName;
         Place = place; 
     }
+    
+    /**
+     * @return the ConferenceName
+     */
+    public String getConferenceName() {
+        return ConferenceName;
+    }
+
+    /**
+     * @param ConferenceName the ConferenceName to set
+     */
+    public void setConferenceName(String ConferenceName) {
+        this.ConferenceName = ConferenceName;
+    }
+
+    /**
+     * @return the Place
+     */
+    public String getPlace() {
+        return Place;
+    }
+
+    /**
+     * @param Place the Place to set
+     */
+    public void setPlace(String Place) {
+        this.Place = Place;
+    }
 }
