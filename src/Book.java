@@ -17,12 +17,12 @@ public class Book extends ReferenceDocument {
         Title = " "; 
         Author = " "; 
         Publisher = " "; 
-        PublishYear = 0;
+        PublishYear = " ";
         PagesNo = " ";
         Edition = " ";
     }
        
-    public Book (String title, String author, String publisher, int pYear, String pages, String edition)
+    public Book (String title, String author, String publisher, String pYear, String pages, String edition)
     {
         Title = title; 
         Author = author; 

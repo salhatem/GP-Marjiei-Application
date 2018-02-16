@@ -16,11 +16,11 @@ public class Other extends ReferenceDocument {
         Title = " "; 
         Author = " "; 
         Publisher = " "; 
-        PublishYear = 0;
+        PublishYear = " ";
         PagesNo = " ";
     }
        
-    public Other (String title, String author, String publisher, int pYear, String pages)
+    public Other (String title, String author, String publisher, String pYear, String pages)
     {
         Title = title; 
         Author = author; 

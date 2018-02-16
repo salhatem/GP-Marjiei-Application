@@ -18,13 +18,13 @@ public class MagazineArticle extends ReferenceDocument {
         Title = " "; 
         Author = " "; 
         Publisher = " "; 
-        PublishYear = 0;
+        PublishYear = " ";
         PagesNo = " ";
         MagazineName = " ";
         Month = " ";
     }
        
-    public MagazineArticle (String title, String author, String publisher, int pYear, String pages, String mName, String month)
+    public MagazineArticle (String title, String author, String publisher, String pYear, String pages, String mName, String month)
     {
         Title = title; 
         Author = author; 

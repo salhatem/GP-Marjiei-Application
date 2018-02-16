@@ -241,11 +241,12 @@ public class Library extends javax.swing.JFrame {
         }
         //</editor-fold>
         
-        DatabaseConnect connection = new DatabaseConnect(); // To connect to Database. 
-        
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                 DatabaseConnect connection = new DatabaseConnect(); // To connect to Database. 
+              //   connection.getData();
                 new Library().setVisible(true);
             }
         });

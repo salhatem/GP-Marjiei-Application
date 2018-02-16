@@ -18,13 +18,13 @@ public class ConferenceProceeding extends ReferenceDocument {
         Title = " "; 
         Author = " "; 
         Publisher = " "; 
-        PublishYear = 0;
+        PublishYear = " ";
         PagesNo = " ";
         ConferenceName = " ";
         Place = " ";
     }
        
-    public ConferenceProceeding (String title, String author, String publisher, int pYear, String pages, String cName, String place)
+    public ConferenceProceeding (String title, String author, String publisher, String pYear, String pages, String cName, String place)
     {
         Title = title; 
         Author = author; 

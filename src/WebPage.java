@@ -20,13 +20,13 @@ public class WebPage extends ReferenceDocument {
         Title = " "; 
         Author = " "; 
         Publisher = " "; 
-        PublishYear = 0;
+        PublishYear = " ";
         PagesNo = " ";
         AccessDate = null;
         URL = " ";
     }
        
-    public WebPage (String title, String author, String publisher, int pYear, String pages, Date aDate, String url)
+    public WebPage (String title, String author, String publisher, String pYear, String pages, Date aDate, String url)
     {
         Title = title; 
         Author = author; 
