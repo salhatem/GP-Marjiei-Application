@@ -13,7 +13,7 @@ public abstract class ReferenceDocument {
     protected String Title;
     protected String Author;
     protected String Publisher;
-    protected int PublishYear;
+    protected String PublishYear;
     protected String PagesNo;
 
     /**
@@ -61,14 +61,14 @@ public abstract class ReferenceDocument {
     /**
      * @return the PublishYear
      */
-    public int getPublishYear() {
+    public String getPublishYear() {
         return PublishYear;
     }
 
     /**
      * @param PublishYear the PublishYear to set
      */
-    public void setPublishYear(int PublishYear) {
+    public void setPublishYear(String PublishYear) {
         this.PublishYear = PublishYear;
     }
 
