@@ -13,11 +13,12 @@ public class addManuallyform extends javax.swing.JFrame {
     /**
      * Creates new form addManuallyform
      */
+   // DatabaseConnect connection = new DatabaseConnect(); // To conect to Database.
     public addManuallyform() {
 
         
         initComponents();
-      
+        
     }
 
     /**
@@ -51,27 +52,32 @@ public class addManuallyform extends javax.swing.JFrame {
 
         titleLabel.setText("العنوان");
 
-        titleTextField.setText("jTextField1");
+        titleTextField.setColumns(10);
 
         authorLabel.setText("المؤلف");
 
-        authorTextField.setText("jTextField1");
+        authorTextField.setColumns(10);
+        authorTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                authorTextFieldActionPerformed(evt);
+            }
+        });
 
         publisherLabel.setText("الناشر");
 
-        publisherTextField.setText("jTextField1");
+        publisherTextField.setColumns(10);
 
         yearLabel.setText("سنة النشر");
 
         pagesLabel.setText("الصفحات");
 
-        yearTextField.setText("jTextField1");
+        yearTextField.setColumns(10);
 
-        pagesTextField.setText("jTextField1");
+        pagesTextField.setColumns(10);
 
         bookEditionLabel.setText("الطبعة");
 
-        bookEditionTextField.setText("jTextField1");
+        bookEditionTextField.setColumns(10);
 
         cancelButton.setText("إلغاء");
 
@@ -103,27 +109,31 @@ public class addManuallyform extends javax.swing.JFrame {
                                 .addComponent(pagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(pagesLabel)))
-                        .addGap(92, 92, 92)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(publisherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(publisherLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(authorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(authorLabel))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(32, 32, 32)
-                                    .addComponent(titleLabel))
-                                .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(158, 158, 158)
+                                .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(publisherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(publisherLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(authorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(authorLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(titleLabel)))
+                                .addGap(43, 43, 43))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cancelButton)
                         .addGap(26, 26, 26)
                         .addComponent(addButton)))
-                .addGap(0, 48, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,6 +179,10 @@ public class addManuallyform extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void authorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authorTextFieldActionPerformed
 
     /**
      * @param args the command line arguments

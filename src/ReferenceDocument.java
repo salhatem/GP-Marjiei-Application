@@ -11,9 +11,9 @@
 public abstract class ReferenceDocument {
     
     protected String Title;
-    protected String Auther;
+    protected String Author;
     protected String Publisher;
     protected int PublishYear;
-    protected String PageNo;
+    protected String PagesNo;
     
 }
