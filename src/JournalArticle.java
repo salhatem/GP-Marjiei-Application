@@ -10,7 +10,7 @@
  */
 public class JournalArticle extends ReferenceDocument {
     private String JournalName;
-    private int Volume;
+    private String Volume;
     
       // Constructors
        public JournalArticle ()
@@ -18,13 +18,13 @@ public class JournalArticle extends ReferenceDocument {
         Title = " "; 
         Author = " "; 
         Publisher = " "; 
-        PublishYear = 0;
+        PublishYear = " ";
         PagesNo = " ";
         JournalName = " ";
-        Volume = 0;
+        Volume = " ";
     }
        
-    public JournalArticle (String title, String author, String publisher, int pYear, String pages, String jName, int volume)
+    public JournalArticle (String title, String author, String publisher, String pYear, String pages, String jName, String volume)
     {
         Title = title; 
         Author = author; 
@@ -52,14 +52,14 @@ public class JournalArticle extends ReferenceDocument {
     /**
      * @return the Volume
      */
-    public int getVolume() {
+    public String getVolume() {
         return Volume;
     }
 
     /**
      * @param Volume the Volume to set
      */
-    public void setVolume(int Volume) {
+    public void setVolume(String Volume) {
         this.Volume = Volume;
     }
 }
