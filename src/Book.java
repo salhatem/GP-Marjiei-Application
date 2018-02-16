@@ -9,7 +9,7 @@
  * @author Shatha Suliman
  */
 public class Book extends ReferenceDocument {
-    private int Edition;
+    private String Edition;
     
     // Constructors
        public Book ()
@@ -19,10 +19,10 @@ public class Book extends ReferenceDocument {
         Publisher = " "; 
         PublishYear = 0;
         PagesNo = " ";
-        Edition = 0;
+        Edition = " ";
     }
        
-    public Book (String title, String author, String publisher, int pYear, String pages, int edition)
+    public Book (String title, String author, String publisher, int pYear, String pages, String edition)
     {
         Title = title; 
         Author = author; 
@@ -35,14 +35,14 @@ public class Book extends ReferenceDocument {
     /**
      * @return the Edition
      */
-    public int getEdition() {
+    public String getEdition() {
         return Edition;
     }
 
     /**
      * @param Edition the Edition to set
      */
-    public void setEdition(int Edition) {
+    public void setEdition(String Edition) {
         this.Edition = Edition;
     }
 }
