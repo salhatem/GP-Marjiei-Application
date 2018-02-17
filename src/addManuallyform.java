@@ -1,3 +1,6 @@
+
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,7 +20,7 @@ public class addManuallyform extends javax.swing.JFrame {
 
         
         initComponents();
-        
+        setIconImage(new ImageIcon(getClass().getResource("/Icons/logo.png")).getImage());
         // Hiding the Extra Fields. 
                extraInfo1Label.setVisible(false);
                extraInfo1TextField.setVisible(false);
