@@ -13,11 +13,16 @@ public class addManuallyform extends javax.swing.JFrame {
     /**
      * Creates new form addManuallyform
      */
-   // DatabaseConnect connection = new DatabaseConnect(); // To conect to Database.
     public addManuallyform() {
 
         
         initComponents();
+        
+        // Hiding the Extra Fields. 
+               extraInfo1Label.setVisible(false);
+               extraInfo1TextField.setVisible(false);
+               extraInfo2Label.setVisible(false);
+               extraInfo2TextField.setVisible(false);
         
     }
 
@@ -30,7 +35,7 @@ public class addManuallyform extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        type = new javax.swing.JComboBox<>();
+        typeCombobox = new javax.swing.JComboBox<>();
         titleLabel = new javax.swing.JLabel();
         titleTextField = new javax.swing.JTextField();
         authorLabel = new javax.swing.JLabel();
@@ -41,14 +46,21 @@ public class addManuallyform extends javax.swing.JFrame {
         pagesLabel = new javax.swing.JLabel();
         yearTextField = new javax.swing.JTextField();
         pagesTextField = new javax.swing.JTextField();
-        bookEditionLabel = new javax.swing.JLabel();
-        bookEditionTextField = new javax.swing.JTextField();
+        extraInfo1Label = new javax.swing.JLabel();
+        extraInfo1TextField = new javax.swing.JTextField();
         cancelButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
+        extraInfo2Label = new javax.swing.JLabel();
+        extraInfo2TextField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("إدخال يدوي");
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "كتاب", "مقال صحفي", "مقال مجلة ", "صفحة ويب ", "ورقة مؤتمر", "أخرى" }));
+        typeCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "كتاب", "مقال صحفي", "مقال مجلة ", "صفحة ويب ", "ورقة مؤتمر", "أخرى" }));
+        typeCombobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeComboboxActionPerformed(evt);
+            }
+        });
 
         titleLabel.setText("العنوان");
 
@@ -75,105 +87,129 @@ public class addManuallyform extends javax.swing.JFrame {
 
         pagesTextField.setColumns(10);
 
-        bookEditionLabel.setText("الطبعة");
+        extraInfo1Label.setText("الطبعة");
 
-        bookEditionTextField.setColumns(10);
+        extraInfo1TextField.setColumns(10);
 
         cancelButton.setText("إلغاء");
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelButtonMouseClicked(evt);
+            }
+        });
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         addButton.setText("إضافة");
+        addButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addButtonMouseClicked(evt);
+            }
+        });
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
 
+        extraInfo2Label.setText("jLabel1");
+
+        extraInfo2TextField.setColumns(10);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(48, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(extraInfo1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(authorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(authorLabel)
+                                    .addComponent(extraInfo1Label)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(yearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(yearLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bookEditionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(bookEditionLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(pagesLabel)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(publisherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(publisherLabel))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(authorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(authorLabel))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(titleLabel)))
-                                .addGap(43, 43, 43))))
+                                .addGap(18, 18, 18)
+                                .addComponent(yearLabel)))
+                        .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addComponent(cancelButton)
                         .addGap(26, 26, 26)
-                        .addComponent(addButton)))
-                .addGap(0, 13, Short.MAX_VALUE))
+                        .addComponent(addButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(typeCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(publisherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(publisherLabel)
+                                    .addComponent(titleLabel)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(extraInfo2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(extraInfo2Label)
+                                    .addComponent(pagesLabel))))))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(typeCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(titleLabel)
+                        .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(titleLabel)
-                            .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(authorLabel)
-                            .addComponent(authorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(authorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(authorLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(publisherLabel)
-                            .addComponent(publisherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pagesLabel)
-                            .addComponent(pagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bookEditionLabel)
-                            .addComponent(bookEditionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(publisherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(yearLabel)
-                            .addComponent(yearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(yearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pagesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pagesLabel)
+                            .addComponent(extraInfo1Label)
+                            .addComponent(extraInfo1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
-                    .addComponent(addButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(extraInfo2Label)
+                    .addComponent(extraInfo2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancelButton)
+                        .addComponent(addButton)))
+                .addGap(21, 21, 21))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -183,6 +219,108 @@ public class addManuallyform extends javax.swing.JFrame {
     private void authorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_authorTextFieldActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
+        // TODO add your handling code here:
+        
+      /*  DatabaseConnect connection = new DatabaseConnect(); // To conect to Database.
+        
+        String title = titleTextField.getText(); 
+        String author = authorTextField.getText(); 
+        String publisher = publisherTextField.getText();
+        String pYear = yearTextField.getText();
+        String pages = pagesTextField.getText();
+        String edition = extraInfo1TextField.getText();
+        
+     
+        
+        Book newBook = new Book(title, author, publisher, pYear, pages, edition);
+        
+        connection.insertData(newBook); */
+    }//GEN-LAST:event_addButtonMouseClicked
+
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonMouseClicked
+
+
+    private void typeComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboboxActionPerformed
+        // TODO add your handling code here:
+        
+         // 'Type' Combobox Selection
+        int index = typeCombobox.getSelectedIndex();
+        switch ( index )
+        {
+            case 0:
+            // Code for adding Book information here
+                    // Setting the Fields
+               extraInfo1Label.setText("الطبعة");
+               extraInfo1Label.setVisible(true);
+               extraInfo1TextField.setVisible(true);
+               extraInfo2Label.setVisible(false);
+               extraInfo2TextField.setVisible(false);
+                
+            break;
+            case 1:
+            // Code for adding Journal Article information here
+                    // Setting the Fields
+               extraInfo1Label.setText("الصحيفة");
+               extraInfo1Label.setVisible(true);
+               extraInfo1TextField.setVisible(true);
+               extraInfo2Label.setText("الحجم");
+               extraInfo2Label.setVisible(true);
+               extraInfo2TextField.setVisible(true);
+
+            break;
+            case 2:
+            // Code for adding Magazine Article information here
+                       // Setting the Fields
+               extraInfo1Label.setText("المجلة");
+               extraInfo1Label.setVisible(true);
+               extraInfo1TextField.setVisible(true);
+               extraInfo2Label.setText("الشهر");
+               extraInfo2Label.setVisible(true);
+               extraInfo2TextField.setVisible(true);
+                
+            break;
+            case 3:
+            // Code for adding Web Page information here
+                      // Setting the Fields
+               extraInfo1Label.setText("تاريخ الوصول");
+               extraInfo1Label.setVisible(true);
+               extraInfo1TextField.setVisible(true);
+               extraInfo2Label.setText("الرابط");
+               extraInfo2Label.setVisible(true);
+               extraInfo2TextField.setVisible(true);
+                
+                
+            break;
+            case 4:
+            // Code for adding Conference Proceeding information here
+                     // Setting the Fields
+               extraInfo1Label.setText("المؤتمر");
+               extraInfo1Label.setVisible(true);
+               extraInfo1TextField.setVisible(true);
+               extraInfo2Label.setText("المكان");
+               extraInfo2Label.setVisible(true);
+               extraInfo2TextField.setVisible(true);
+                
+            break;
+            case 5:
+            // Code for adding Other Document information here
+                        // Setting the Fields
+               extraInfo1Label.setVisible(false);
+               extraInfo1TextField.setVisible(false);
+               extraInfo2Label.setVisible(false);
+               extraInfo2TextField.setVisible(false);
+                
+        } // End Switch Statment.
+        
+    }//GEN-LAST:event_typeComboboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,16 +361,18 @@ public class addManuallyform extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JLabel authorLabel;
     private javax.swing.JTextField authorTextField;
-    private javax.swing.JLabel bookEditionLabel;
-    private javax.swing.JTextField bookEditionTextField;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel extraInfo1Label;
+    private javax.swing.JTextField extraInfo1TextField;
+    private javax.swing.JLabel extraInfo2Label;
+    private javax.swing.JTextField extraInfo2TextField;
     private javax.swing.JLabel pagesLabel;
     private javax.swing.JTextField pagesTextField;
     private javax.swing.JLabel publisherLabel;
     private javax.swing.JTextField publisherTextField;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JTextField titleTextField;
-    private javax.swing.JComboBox<String> type;
+    private javax.swing.JComboBox<String> typeCombobox;
     private javax.swing.JLabel yearLabel;
     private javax.swing.JTextField yearTextField;
     // End of variables declaration//GEN-END:variables
