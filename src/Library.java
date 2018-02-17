@@ -1,5 +1,6 @@
 
 import java.sql.*;
+import javax.swing.ImageIcon;
 import javax.swing.table.*;
 
 /*
@@ -26,12 +27,10 @@ public class Library extends javax.swing.JFrame {
     
     public Library() {
         initComponents();
-        
+        setIconImage(new ImageIcon(getClass().getResource("/Icons/logo.png")).getImage());
         DatabaseConnect();
-        
         model = (DefaultTableModel) DocsList.getModel();
         CreateColumns(); 
-        
         RertiveBooks();
         RetriveConferenceProceedings();
         RetriveJournalArticles();
