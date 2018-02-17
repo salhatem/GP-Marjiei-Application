@@ -1,6 +1,6 @@
 
 import java.sql.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,18 +28,20 @@ public class Library extends javax.swing.JFrame {
         initComponents();
         
         DatabaseConnect();
+        
         model = (DefaultTableModel) DocsList.getModel();
         CreateColumns(); 
-      //  RetriveRaws();
-       RertiveBooks();
-       RetriveConferenceProceedings();
-       RetriveJournalArticles();
-       RetriveMagazineArticles();
-       RetriveWebPages();
-       RetriveOthers();
+        
+        RertiveBooks();
+        RetriveConferenceProceedings();
+        RetriveJournalArticles();
+        RetriveMagazineArticles();
+        RetriveWebPages();
+        RetriveOthers();
       
        // sort();
-    }
+       
+    } // End library Constructor
     
      private void DatabaseConnect (){
         try {
@@ -82,7 +84,6 @@ public class Library extends javax.swing.JFrame {
                  String[] books = {publishYear, publisher, author, title};
                  model.addRow(books); 
                  
-                 rs = null;
              }
              
           } catch (Exception ex)
@@ -109,7 +110,6 @@ public class Library extends javax.swing.JFrame {
                  String[] cProceedings = {publishYear, publisher, author, title};
                  model.addRow(cProceedings); 
                  
-                  rs = null;
              }
           } catch (Exception ex)
                  {
@@ -134,7 +134,6 @@ public class Library extends javax.swing.JFrame {
                  String[] jArticles = {publishYear, publisher, author, title};
                  model.addRow(jArticles); 
                  
-                  rs = null;
              }
           } catch (Exception ex)
                  {
@@ -160,7 +159,6 @@ public class Library extends javax.swing.JFrame {
                  String[] mArticles = {publishYear, publisher, author, title};
                  model.addRow(mArticles); 
                  
-                  rs = null;
              }
           } catch (Exception ex)
                  {
@@ -185,7 +183,6 @@ public class Library extends javax.swing.JFrame {
                  String[] webPages = {publishYear, publisher, author, title};
                  model.addRow(webPages); 
                  
-                  rs = null;
              }
           } catch (Exception ex)
                  {
@@ -210,7 +207,6 @@ public class Library extends javax.swing.JFrame {
                  String[] others = {publishYear, publisher, author, title};
                  model.addRow(others); 
                  
-                  rs = null;
              }
           } catch (Exception ex)
                  {
@@ -365,6 +361,7 @@ public class Library extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
 
+        // 'Add' Combobox Selection
         int index = add.getSelectedIndex();
         switch ( index )
         {
@@ -419,12 +416,10 @@ public class Library extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               //  DatabaseConnect connection = new DatabaseConnect(); // To connect to Database. 
-              //   connection.getData();
                 new Library().setVisible(true);
             }
         });
-    }
+    } // End main
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DocsList;
