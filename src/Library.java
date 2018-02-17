@@ -1,4 +1,5 @@
 
+import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -18,18 +19,44 @@ public class Library extends javax.swing.JFrame {
      */
     
     DefaultTableModel model;
+    private Connection con; 
+    private Statement stmt;
+    private ResultSet rs;
+    String Query; 
     
     public Library() {
         initComponents();
         
+        DatabaseConnect();
+        model = (DefaultTableModel) DocsList.getModel();
         CreateColumns(); 
-        
+      //  RetriveRaws();
+       RertiveBooks();
+       RetriveConferenceProceedings();
+       RetriveJournalArticles();
+       RetriveMagazineArticles();
+       RetriveWebPages();
+       RetriveOthers();
+      
        // sort();
     }
     
+     private void DatabaseConnect (){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            String host = "jdbc:mysql://localhost:3306/marjiei";
+            String username = "root";
+            String password = ""; 
+            con = DriverManager.getConnection( host, username, password );
+            stmt = con.createStatement();
+            
+        } catch ( Exception err ) {
+          System.out.println( err.getMessage( ) ); }
+    }
+     
     private void CreateColumns()
     {
-        model = (DefaultTableModel) DocsList.getModel();
         
         model.addColumn("تاريخ الإضافة");
         model.addColumn("سنة النشر");
@@ -38,12 +65,159 @@ public class Library extends javax.swing.JFrame {
         model.addColumn("العنوان");
     }
 
-    private void addRaw(String date, String year, String publisher, String author, String title)
-    {
-        String[] DataRaw = {date, year, publisher, author, title};
-        model.addRow(DataRaw);
-    }
-    
+   // private void RetriveRaws()
+      private void RertiveBooks()
+      {
+          try 
+          {
+             Query = "Select * from book";
+             rs = stmt.executeQuery(Query);
+             while (rs.next())
+             {
+                 String title = rs.getString("title");
+                 String author = rs.getString("author");
+                 String publisher = rs.getString("publisher");
+                 String publishYear = rs.getString("publishYear");
+
+                 String[] books = {publishYear, publisher, author, title};
+                 model.addRow(books); 
+                 
+                 rs = null;
+             }
+             
+          } catch (Exception ex)
+          {
+              System.out.println(ex.getMessage());
+          }
+          
+      } // End RetriveBooks()   
+          
+             // RETRIVE CONFERENCE PROCEEDINGS
+      private void RetriveConferenceProceedings()
+      {
+          try
+          {
+                Query = "Select * from conferenceproceeding";
+             rs = stmt.executeQuery(Query);
+             while (rs.next())
+             {
+                 String title = rs.getString("title");
+                 String author = rs.getString("author");
+                 String publisher = rs.getString("publisher");
+                 String publishYear = rs.getString("publishYear");
+
+                 String[] cProceedings = {publishYear, publisher, author, title};
+                 model.addRow(cProceedings); 
+                 
+                  rs = null;
+             }
+          } catch (Exception ex)
+                 {
+             System.out.println(ex.getMessage());
+                 }
+      } // End RetriveConferenceProceedings()
+           
+             // RETRIVE JOURNAL ARTICLES  
+      private void RetriveJournalArticles()
+      {
+          try
+          {
+               Query = "Select * from journalarticle";
+             rs = stmt.executeQuery(Query);
+             while (rs.next())
+             {
+                 String title = rs.getString("title");
+                 String author = rs.getString("author");
+                 String publisher = rs.getString("publisher");
+                 String publishYear = rs.getString("publishYear");
+
+                 String[] jArticles = {publishYear, publisher, author, title};
+                 model.addRow(jArticles); 
+                 
+                  rs = null;
+             }
+          } catch (Exception ex)
+                 {
+             System.out.println(ex.getMessage());
+                 }
+      } // End RetriveJournalArticles()
+            
+             
+             // RETRIVE MAGAZINE ARTICLES
+      private void RetriveMagazineArticles()
+      {
+          try
+          {
+              Query = "Select * from magazinearticle";
+             rs = stmt.executeQuery(Query);
+             while (rs.next())
+             {
+                 String title = rs.getString("title");
+                 String author = rs.getString("author");
+                 String publisher = rs.getString("publisher");
+                 String publishYear = rs.getString("publishYear");
+
+                 String[] mArticles = {publishYear, publisher, author, title};
+                 model.addRow(mArticles); 
+                 
+                  rs = null;
+             }
+          } catch (Exception ex)
+                 {
+             System.out.println(ex.getMessage());
+                 }
+      } // End RetriveMagazineArticles()
+      
+             // RETRIVE WEB PAGES
+      private void RetriveWebPages()
+      {
+          try
+          {
+                   Query = "Select * from webpage";
+             rs = stmt.executeQuery(Query);
+             while (rs.next())
+             {
+                 String title = rs.getString("title");
+                 String author = rs.getString("author");
+                 String publisher = rs.getString("publisher");
+                 String publishYear = rs.getString("publishYear");
+
+                 String[] webPages = {publishYear, publisher, author, title};
+                 model.addRow(webPages); 
+                 
+                  rs = null;
+             }
+          } catch (Exception ex)
+                 {
+             System.out.println(ex.getMessage());
+                 }
+      } // End RetriveWebPages()
+             
+             // RETRIVE OTHERS
+       private void RetriveOthers()
+      {
+          try
+          {
+                Query = "Select * from other";
+             rs = stmt.executeQuery(Query);
+             while (rs.next())
+             {
+                 String title = rs.getString("title");
+                 String author = rs.getString("author");
+                 String publisher = rs.getString("publisher");
+                 String publishYear = rs.getString("publishYear");
+
+                 String[] others = {publishYear, publisher, author, title};
+                 model.addRow(others); 
+                 
+                  rs = null;
+             }
+          } catch (Exception ex)
+                 {
+             System.out.println(ex.getMessage());
+                 }
+      } // End RetriveOthers()
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,7 +419,7 @@ public class Library extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 DatabaseConnect connection = new DatabaseConnect(); // To connect to Database. 
+               //  DatabaseConnect connection = new DatabaseConnect(); // To connect to Database. 
               //   connection.getData();
                 new Library().setVisible(true);
             }
