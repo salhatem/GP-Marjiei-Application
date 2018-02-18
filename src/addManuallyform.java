@@ -1,4 +1,8 @@
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
 
 /*
@@ -16,17 +20,38 @@ public class addManuallyform extends javax.swing.JFrame {
     /**
      * Creates new form addManuallyform
      */
+    
+     private Connection con; 
+    private Statement stmt;
+    private ResultSet rs;
+    String Query; 
+    
     public addManuallyform() {
 
         
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Icons/logo.png")).getImage());
+        DatabaseConnect();
         // Hiding the Extra Fields. 
                extraInfo1Label.setVisible(false);
                extraInfo1TextField.setVisible(false);
                extraInfo2Label.setVisible(false);
                extraInfo2TextField.setVisible(false);
-        
+                      
+    }
+    
+     private void DatabaseConnect (){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            String host = "jdbc:mysql://localhost:3306/marjiei";
+            String username = "root";
+            String password = ""; 
+            con = DriverManager.getConnection( host, username, password );
+            stmt = con.createStatement();
+            
+        } catch ( Exception err ) {
+          System.out.println( err.getMessage( ) ); }
     }
 
     /**
@@ -148,8 +173,7 @@ public class addManuallyform extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(cancelButton)
                         .addGap(26, 26, 26)
-                        .addComponent(addButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(addButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
@@ -202,12 +226,13 @@ public class addManuallyform extends javax.swing.JFrame {
                             .addComponent(extraInfo1Label)
                             .addComponent(extraInfo1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(extraInfo2Label)
-                    .addComponent(extraInfo2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cancelButton)
-                        .addComponent(addButton)))
+                        .addComponent(addButton))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(extraInfo2Label)
+                        .addComponent(extraInfo2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
 
@@ -217,6 +242,47 @@ public class addManuallyform extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
+        
+            // document information insertion
+         int index = typeCombobox.getSelectedIndex();
+        switch ( index )
+        {
+            case 0: 
+            // Code to insert book information here.
+             try 
+              {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO book (title, author, pagesNumber, publisher, publishYear, edition)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"')"); 
+              } catch (Exception ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
+                break;
+            case 1: 
+                // Code to insert journal article information here.
+                
+                break;
+                
+            case 2:
+                // Code to insert magazine article information here.
+                
+                break;
+                
+            case 3:
+                // Code to insert web page information here.
+                
+                break;
+                
+            case 4:
+                // Code to insert conference proceeding information here.
+                
+                break;
+                
+            case 5:
+                // Code to insert other document information here.
+                
+                break; 
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void authorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTextFieldActionPerformed
@@ -259,8 +325,7 @@ public class addManuallyform extends javax.swing.JFrame {
         switch ( index )
         {
             case 0:
-            // Code for adding Book information here
-                    // Setting the Fields
+            // Code for show Book form
                extraInfo1Label.setText("الطبعة");
                extraInfo1Label.setVisible(true);
                extraInfo1TextField.setVisible(true);
@@ -269,8 +334,7 @@ public class addManuallyform extends javax.swing.JFrame {
                 
             break;
             case 1:
-            // Code for adding Journal Article information here
-                    // Setting the Fields
+            // Code for show Journal Article form
                extraInfo1Label.setText("الصحيفة");
                extraInfo1Label.setVisible(true);
                extraInfo1TextField.setVisible(true);
@@ -280,8 +344,7 @@ public class addManuallyform extends javax.swing.JFrame {
 
             break;
             case 2:
-            // Code for adding Magazine Article information here
-                       // Setting the Fields
+            // Code for show Magazine Article form
                extraInfo1Label.setText("المجلة");
                extraInfo1Label.setVisible(true);
                extraInfo1TextField.setVisible(true);
@@ -291,8 +354,7 @@ public class addManuallyform extends javax.swing.JFrame {
                 
             break;
             case 3:
-            // Code for adding Web Page information here
-                      // Setting the Fields
+            // Code for show Web Page form
                extraInfo1Label.setText("تاريخ الوصول");
                extraInfo1Label.setVisible(true);
                extraInfo1TextField.setVisible(true);
@@ -300,11 +362,9 @@ public class addManuallyform extends javax.swing.JFrame {
                extraInfo2Label.setVisible(true);
                extraInfo2TextField.setVisible(true);
                 
-                
             break;
             case 4:
-            // Code for adding Conference Proceeding information here
-                     // Setting the Fields
+            // Code for show Conference Proceeding form
                extraInfo1Label.setText("المؤتمر");
                extraInfo1Label.setVisible(true);
                extraInfo1TextField.setVisible(true);
@@ -314,8 +374,7 @@ public class addManuallyform extends javax.swing.JFrame {
                 
             break;
             case 5:
-            // Code for adding Other Document information here
-                        // Setting the Fields
+            // Code for show Other Document form
                extraInfo1Label.setVisible(false);
                extraInfo1TextField.setVisible(false);
                extraInfo2Label.setVisible(false);
