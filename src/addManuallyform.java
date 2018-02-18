@@ -272,21 +272,53 @@ public class addManuallyform extends javax.swing.JFrame {
                 
             case 2:
                 // Code to insert magazine article information here.
+                try 
+              {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, magazineName, month)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+              } catch (Exception ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
                 
                 break;
                 
             case 3:
                 // Code to insert web page information here.
+                try 
+              {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, url, accessDate)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+              } catch (Exception ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
                 
                 break;
                 
             case 4:
                 // Code to insert conference proceeding information here.
+                try 
+              {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, conferenceName, place)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+              } catch (Exception ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
                 
                 break;
                 
             case 5:
                 // Code to insert other document information here.
+                try 
+              {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"')");  
+              } catch (Exception ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
                 
                 break; 
         }
@@ -362,10 +394,10 @@ public class addManuallyform extends javax.swing.JFrame {
             break;
             case 3:
             // Code for show Web Page form
-               extraInfo1Label.setText("تاريخ الوصول");
+               extraInfo1Label.setText("الرابط");
                extraInfo1Label.setVisible(true);
                extraInfo1TextField.setVisible(true);
-               extraInfo2Label.setText("الرابط");
+               extraInfo2Label.setText("تاريخ الوصول");
                extraInfo2Label.setVisible(true);
                extraInfo2TextField.setVisible(true);
                 
