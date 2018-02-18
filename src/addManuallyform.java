@@ -260,7 +260,14 @@ public class addManuallyform extends javax.swing.JFrame {
                 break;
             case 1: 
                 // Code to insert journal article information here.
-                
+                 try 
+              {
+                stmt = con.createStatement();
+                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, journalName, volume)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+              } catch (Exception ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
                 break;
                 
             case 2:
