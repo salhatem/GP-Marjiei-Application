@@ -1,4 +1,5 @@
 
+import java.util.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,8 +34,8 @@ public class addManuallyform extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/Icons/logo.png")).getImage());
         DatabaseConnect();
         // Hiding the Extra Fields. 
-               extraInfo1Label.setVisible(false);
-               extraInfo1TextField.setVisible(false);
+               extraInfo1Label.setVisible(true);
+               extraInfo1TextField.setVisible(true);
                extraInfo2Label.setVisible(false);
                extraInfo2TextField.setVisible(false);
                       
@@ -275,7 +276,7 @@ public class addManuallyform extends javax.swing.JFrame {
                 try 
               {
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, magazineName, month)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO magazinearticle (title, author, pagesNumber, publisher, publishYear, magazineName, month)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -288,7 +289,7 @@ public class addManuallyform extends javax.swing.JFrame {
                 try 
               {
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, url, accessDate)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO webpage (title, author, pagesNumber, publisher, publishYear, url, accessDate)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -301,7 +302,7 @@ public class addManuallyform extends javax.swing.JFrame {
                 try 
               {
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, conferenceName, place)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO conferenceproceeding (title, author, pagesNumber, publisher, publishYear, conferenceName, place)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -314,7 +315,7 @@ public class addManuallyform extends javax.swing.JFrame {
                 try 
               {
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO other (title, author, pagesNumber, publisher, publishYear)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"')");  
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -322,6 +323,11 @@ public class addManuallyform extends javax.swing.JFrame {
                 
                 break; 
         }
+        
+        this.setVisible(false);
+        Library lib;
+        lib = new Library();
+        lib.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void authorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTextFieldActionPerformed
@@ -330,6 +336,10 @@ public class addManuallyform extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Library lib;
+        lib = new Library();
+        lib.setVisible(true);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked
