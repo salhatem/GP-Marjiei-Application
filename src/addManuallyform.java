@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 
 /*
@@ -252,8 +254,10 @@ public class addManuallyform extends javax.swing.JFrame {
             // Code to insert book information here.
              try 
               {
+                  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                  LocalDate localDate = LocalDate.now();
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO book (title, author, pagesNumber, publisher, publishYear, edition)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"')"); 
+                stmt.executeUpdate("INSERT INTO book (title, author, pagesNumber, publisher, publishYear, edition, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+localDate+"')"); 
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -263,8 +267,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert journal article information here.
                  try 
               {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate = LocalDate.now();
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, journalName, volume)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO journalarticle (title, author, pagesNumber, publisher, publishYear, journalName, volume, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"', '"+localDate+"')");  
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -275,8 +281,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert magazine article information here.
                 try 
               {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate = LocalDate.now();
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO magazinearticle (title, author, pagesNumber, publisher, publishYear, magazineName, month)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO magazinearticle (title, author, pagesNumber, publisher, publishYear, magazineName, month, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"', '"+localDate+"')");  
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -288,8 +296,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert web page information here.
                 try 
               {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate = LocalDate.now();
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO webpage (title, author, pagesNumber, publisher, publishYear, url, accessDate)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO webpage (title, author, pagesNumber, publisher, publishYear, url, accessDate, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"', '"+localDate+"')");  
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -301,8 +311,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert conference proceeding information here.
                 try 
               {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate = LocalDate.now();
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO conferenceproceeding (title, author, pagesNumber, publisher, publishYear, conferenceName, place)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO conferenceproceeding (title, author, pagesNumber, publisher, publishYear, conferenceName, place, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"', '"+localDate+"')"); 
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -314,8 +326,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert other document information here.
                 try 
               {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate = LocalDate.now();
                 stmt = con.createStatement();
-                stmt.executeUpdate("INSERT INTO other (title, author, pagesNumber, publisher, publishYear)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"')");  
+                stmt.executeUpdate("INSERT INTO other (title, author, pagesNumber, publisher, publishYear, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+localDate+"')");
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
