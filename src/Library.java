@@ -1,6 +1,7 @@
 
 import java.sql.*;
 import javax.swing.ImageIcon;
+import javax.swing.RowFilter;
 import javax.swing.table.*;
 
 /*
@@ -77,8 +78,9 @@ public class Library extends javax.swing.JFrame {
                  String author = rs.getString("author");
                  String publisher = rs.getString("publisher");
                  String publishYear = rs.getString("publishYear");
+                 String dateAdded = rs.getString("DateAdded");
 
-                 String[] books = {publishYear, publisher, author, title};
+                 String[] books = {dateAdded, publishYear, publisher, author, title};
                  model.addRow(books); 
                  
              }
@@ -103,8 +105,9 @@ public class Library extends javax.swing.JFrame {
                  String author = rs.getString("author");
                  String publisher = rs.getString("publisher");
                  String publishYear = rs.getString("publishYear");
+                 String dateAdded = rs.getString("DateAdded");
 
-                 String[] cProceedings = {publishYear, publisher, author, title};
+                 String[] cProceedings = {dateAdded, publishYear, publisher, author, title};
                  model.addRow(cProceedings); 
                  
              }
@@ -127,8 +130,9 @@ public class Library extends javax.swing.JFrame {
                  String author = rs.getString("author");
                  String publisher = rs.getString("publisher");
                  String publishYear = rs.getString("publishYear");
+                 String dateAdded = rs.getString("DateAdded");
 
-                 String[] jArticles = {publishYear, publisher, author, title};
+                 String[] jArticles = {dateAdded, publishYear, publisher, author, title};
                  model.addRow(jArticles); 
                  
              }
@@ -152,8 +156,9 @@ public class Library extends javax.swing.JFrame {
                  String author = rs.getString("author");
                  String publisher = rs.getString("publisher");
                  String publishYear = rs.getString("publishYear");
+                 String dateAdded = rs.getString("DateAdded");
 
-                 String[] mArticles = {publishYear, publisher, author, title};
+                 String[] mArticles = {dateAdded, publishYear, publisher, author, title};
                  model.addRow(mArticles); 
                  
              }
@@ -176,8 +181,9 @@ public class Library extends javax.swing.JFrame {
                  String author = rs.getString("author");
                  String publisher = rs.getString("publisher");
                  String publishYear = rs.getString("publishYear");
+                 String dateAdded = rs.getString("DateAdded");
 
-                 String[] webPages = {publishYear, publisher, author, title};
+                 String[] webPages = {dateAdded, publishYear, publisher, author, title};
                  model.addRow(webPages); 
                  
              }
@@ -200,8 +206,9 @@ public class Library extends javax.swing.JFrame {
                  String author = rs.getString("author");
                  String publisher = rs.getString("publisher");
                  String publishYear = rs.getString("publishYear");
+                 String dateAdded = rs.getString("DateAdded");
 
-                 String[] others = {publishYear, publisher, author, title};
+                 String[] others = {dateAdded, publishYear, publisher, author, title};
                  model.addRow(others); 
                  
              }
@@ -216,6 +223,13 @@ public class Library extends javax.swing.JFrame {
       {
           TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(model);
           DocsList.setRowSorter(sorter);
+      }
+      
+      private void Search(String key)
+      {
+          TableRowSorter<DefaultTableModel> filter = new TableRowSorter<DefaultTableModel>(model);
+          DocsList.setRowSorter(filter);
+          filter.setRowFilter(RowFilter.regexFilter(key));
       }
        
     /**
@@ -252,6 +266,11 @@ public class Library extends javax.swing.JFrame {
         jScrollPane1.setViewportView(DocsList);
 
         searchField.setToolTipText("بحث");
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchFieldKeyReleased(evt);
+            }
+        });
 
         addCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "إضافة وثيقة", "إدخال يدوي", "إنشاء مجلد" }));
         addCombobox.setToolTipText("إضافة");
@@ -373,6 +392,13 @@ public class Library extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
+        // TODO add your handling code here:
+        
+        String key = searchField.getText();
+        Search(key);
+    }//GEN-LAST:event_searchFieldKeyReleased
 
     /**
      * @param args the command line arguments
