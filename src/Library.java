@@ -32,12 +32,7 @@ public class Library extends javax.swing.JFrame {
         DatabaseConnect();
         model = (DefaultTableModel) DocsList.getModel();
         CreateColumns(); 
-        RertiveBooks();
-        RetriveConferenceProceedings();
-        RetriveJournalArticles();
-        RetriveMagazineArticles();
-        RetriveWebPages();
-        RetriveOthers();
+        RertiveDocuments();
         sort();
        
     } // End library Constructor
@@ -46,7 +41,7 @@ public class Library extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            String host = "jdbc:mysql://localhost:3306/marjiei";
+            String host = "jdbc:mysql://localhost:3306/marjieidb";
             String username = "root";
             String password = ""; 
             String unicode= "?useUnicode=yes&characterEncoding=UTF-8";
@@ -67,11 +62,11 @@ public class Library extends javax.swing.JFrame {
         model.addColumn("العنوان");
     }
 
-      private void RertiveBooks()
+      private void RertiveDocuments()
       {
           try 
           {
-             Query = "Select * from book";
+             Query = "Select * from referencedocument";
              rs = stmt.executeQuery(Query);
              while (rs.next())
              {
@@ -81,8 +76,8 @@ public class Library extends javax.swing.JFrame {
                  String publishYear = rs.getString("publishYear");
                  String dateAdded = rs.getString("DateAdded");
                  
-                 String[] books = {dateAdded, publishYear, publisher, author, title};
-                 model.addRow(books); 
+                 String[] docs = {dateAdded, publishYear, publisher, author, title};
+                 model.addRow(docs); 
                  
              }
              
@@ -91,133 +86,7 @@ public class Library extends javax.swing.JFrame {
               System.out.println(ex.getMessage());
           }
           
-      } // End RetriveBooks()   
-          
-             // RETRIVE CONFERENCE PROCEEDINGS
-      private void RetriveConferenceProceedings()
-      {
-          try
-          {
-                Query = "Select * from conferenceproceeding";
-             rs = stmt.executeQuery(Query);
-             while (rs.next())
-             {
-                 String title = rs.getString("title");
-                 String author = rs.getString("author");
-                 String publisher = rs.getString("publisher");
-                 String publishYear = rs.getString("publishYear");
-                 String dateAdded = rs.getString("dateAdded");
-
-                 String[] cProceedings = {dateAdded, publishYear, publisher, author, title};
-                 model.addRow(cProceedings); 
-                 
-             }
-          } catch (Exception ex)
-                 {
-             System.out.println(ex.getMessage());
-                 }
-      } // End RetriveConferenceProceedings()
-           
-             // RETRIVE JOURNAL ARTICLES  
-      private void RetriveJournalArticles()
-      {
-          try
-          {
-               Query = "Select * from journalarticle";
-             rs = stmt.executeQuery(Query);
-             while (rs.next())
-             {
-                 String title = rs.getString("title");
-                 String author = rs.getString("author");
-                 String publisher = rs.getString("publisher");
-                 String publishYear = rs.getString("publishYear");
-                 String dateAdded = rs.getString("DateAdded");
-
-                 String[] jArticles = {dateAdded, publishYear, publisher, author, title};
-                 model.addRow(jArticles); 
-                 
-             }
-          } catch (Exception ex)
-                 {
-             System.out.println(ex.getMessage());
-                 }
-      } // End RetriveJournalArticles()
-            
-             
-             // RETRIVE MAGAZINE ARTICLES
-      private void RetriveMagazineArticles()
-      {
-          try
-          {
-              Query = "Select * from magazinearticle";
-             rs = stmt.executeQuery(Query);
-             while (rs.next())
-             {
-                 String title = rs.getString("title");
-                 String author = rs.getString("author");
-                 String publisher = rs.getString("publisher");
-                 String publishYear = rs.getString("publishYear");
-                 String dateAdded = rs.getString("DateAdded");
-
-                 String[] mArticles = {dateAdded, publishYear, publisher, author, title};
-                 model.addRow(mArticles); 
-                 
-             }
-          } catch (Exception ex)
-                 {
-             System.out.println(ex.getMessage());
-                 }
-      } // End RetriveMagazineArticles()
-      
-             // RETRIVE WEB PAGES
-      private void RetriveWebPages()
-      {
-          try
-          {
-                   Query = "Select * from webpage";
-             rs = stmt.executeQuery(Query);
-             while (rs.next())
-             {
-                 String title = rs.getString("title");
-                 String author = rs.getString("author");
-                 String publisher = rs.getString("publisher");
-                 String publishYear = rs.getString("publishYear");
-                 String dateAdded = rs.getString("DateAdded");
-
-                 String[] webPages = {dateAdded, publishYear, publisher, author, title};
-                 model.addRow(webPages); 
-                 
-             }
-          } catch (Exception ex)
-                 {
-             System.out.println(ex.getMessage());
-                 }
-      } // End RetriveWebPages()
-             
-             // RETRIVE OTHERS
-       private void RetriveOthers()
-      {
-          try
-          {
-                Query = "Select * from other";
-             rs = stmt.executeQuery(Query);
-             while (rs.next())
-             {
-                 String title = rs.getString("title");
-                 String author = rs.getString("author");
-                 String publisher = rs.getString("publisher");
-                 String publishYear = rs.getString("publishYear");
-                 String dateAdded = rs.getString("DateAdded");
-
-                 String[] others = {dateAdded, publishYear, publisher, author, title};
-                 model.addRow(others); 
-                 
-             }
-          } catch (Exception ex)
-                 {
-             System.out.println(ex.getMessage());
-                 }
-      } // End RetriveOthers()
+      } // End RertiveDocuments()   
        
        // to Sort using column header
       private void sort()
@@ -252,6 +121,20 @@ public class Library extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        interfaceLanguageButton = new javax.swing.JButton();
+        viewDocInfo = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        title1 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        title2 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        title3 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("مكتبة مرجعي");
@@ -312,59 +195,149 @@ public class Library extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/search.png"))); // NOI18N
 
+        interfaceLanguageButton.setText("English");
+
+        title.setText("العنوان");
+
+        jTextField1.setColumns(20);
+
+        title1.setText("المؤلف");
+
+        jTextField2.setColumns(20);
+
+        title2.setText("الناشر");
+
+        jTextField3.setColumns(20);
+
+        title3.setText("سنة النشر");
+
+        jTextField4.setColumns(20);
+
+        javax.swing.GroupLayout viewDocInfoLayout = new javax.swing.GroupLayout(viewDocInfo);
+        viewDocInfo.setLayout(viewDocInfoLayout);
+        viewDocInfoLayout.setHorizontalGroup(
+            viewDocInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewDocInfoLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(viewDocInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewDocInfoLayout.createSequentialGroup()
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(title2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewDocInfoLayout.createSequentialGroup()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(title1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewDocInfoLayout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(title))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewDocInfoLayout.createSequentialGroup()
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(title3)))
+                .addContainerGap())
+        );
+        viewDocInfoLayout.setVerticalGroup(
+            viewDocInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewDocInfoLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(viewDocInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(title)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(viewDocInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(title1)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(viewDocInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(title2)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(viewDocInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(title3)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jMenu1.setText("إضافة");
+        jMenuBar2.add(jMenu1);
+
+        jMenu4.setText("تعديل");
+        jMenuBar2.add(jMenu4);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/helpIcon.png"))); // NOI18N
+        jMenuBar2.add(jMenu2);
+
+        setJMenuBar(jMenuBar2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                .addComponent(viewDocInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(interfaceLanguageButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)))
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(21, 21, 21)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(editButton)
+                                .addGap(14, 14, 14)
+                                .addComponent(addCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabel1)
+                                .addGap(25, 25, 25)))
+                        .addGap(30, 30, 30)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(21, 21, 21)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(editButton)
-                        .addGap(14, 14, 14)
-                        .addComponent(addCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel1)
-                        .addGap(57, 57, 57))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(editButton)
-                        .addComponent(deleteButton)
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editButton)
+                            .addComponent(deleteButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(interfaceLanguageButton)
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(viewDocInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -451,11 +424,25 @@ public class Library extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> addCombobox;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
+    private javax.swing.JButton interfaceLanguageButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField searchField;
+    private javax.swing.JLabel title;
+    private javax.swing.JLabel title1;
+    private javax.swing.JLabel title2;
+    private javax.swing.JLabel title3;
+    private javax.swing.JPanel viewDocInfo;
     // End of variables declaration//GEN-END:variables
 }
