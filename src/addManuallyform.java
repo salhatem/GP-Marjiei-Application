@@ -50,7 +50,8 @@ public class addManuallyform extends javax.swing.JFrame {
             String host = "jdbc:mysql://localhost:3306/marjiei";
             String username = "root";
             String password = ""; 
-            con = DriverManager.getConnection( host, username, password );
+            String unicode= "?useUnicode=yes&characterEncoding=UTF-8";
+            con = DriverManager.getConnection( host+unicode, username, password );
             stmt = con.createStatement();
             
         } catch ( Exception err ) {

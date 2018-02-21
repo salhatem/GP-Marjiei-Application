@@ -49,7 +49,8 @@ public class Library extends javax.swing.JFrame {
             String host = "jdbc:mysql://localhost:3306/marjiei";
             String username = "root";
             String password = ""; 
-            con = DriverManager.getConnection( host, username, password );
+            String unicode= "?useUnicode=yes&characterEncoding=UTF-8";
+            con = DriverManager.getConnection( host+unicode, username, password );
             stmt = con.createStatement();
             
         } catch ( Exception err ) {
@@ -79,7 +80,7 @@ public class Library extends javax.swing.JFrame {
                  String publisher = rs.getString("publisher");
                  String publishYear = rs.getString("publishYear");
                  String dateAdded = rs.getString("DateAdded");
-
+                 
                  String[] books = {dateAdded, publishYear, publisher, author, title};
                  model.addRow(books); 
                  
@@ -354,12 +355,13 @@ public class Library extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editButton)
-                    .addComponent(deleteButton)
-                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editButton)
+                        .addComponent(deleteButton)
+                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
