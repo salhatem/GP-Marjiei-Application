@@ -44,7 +44,7 @@ public class addManuallyform extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            String host = "jdbc:mysql://localhost:3306/marjieidb";
+            String host = "jdbc:mysql://localhost:3306/mg-marjieidb";
             String username = "root";
             String password = ""; 
             String unicode= "?useUnicode=yes&characterEncoding=UTF-8";
@@ -84,7 +84,7 @@ public class addManuallyform extends javax.swing.JFrame {
 
         setTitle("إدخال يدوي");
 
-        typeCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "كتاب", "مقال صحفي", "مقال مجلة ", "صفحة ويب ", "ورقة مؤتمر", "أخرى" }));
+        typeCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "كتاب", "مقال صحفي", "مقال مجلة", "صفحة ويب", "ورقة مؤتمر", "أخرى" }));
         typeCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeComboboxActionPerformed(evt);
@@ -252,14 +252,14 @@ public class addManuallyform extends javax.swing.JFrame {
             // Code to insert book information here.
              try 
               {
-                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00");
                  LocalDate localDate = LocalDate.now();
                  stmt = con.createStatement();
-                 stmt.executeUpdate("INSERT INTO referencedocument (title, author, pages, publisher, publishYear, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+localDate+"')"); 
+                 stmt.executeUpdate("INSERT INTO referencedocument (documentType, title, author, pages, publisher, publishYear)"+" VALUES ('book', '"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+Integer.parseInt(pagesTextField.getText())+"', '"+publisherTextField.getText()+"', '"+Integer.parseInt(yearTextField.getText())+"')"); 
                  rs = stmt.executeQuery("SELECT documentID FROM referencedocument WHERE title = '"+ titleTextField.getText() +"' AND author = '"+ authorTextField.getText() +"'");
                  rs.next();
                  int id = rs.getInt("documentID");
-                 stmt.executeUpdate("INSERT INTO book (documentID, edition) VALUES ( '"+ id +"', '"+extraInfo1TextField.getText()+"')");
+                 stmt.executeUpdate("INSERT INTO book (documentID, edition)"+" VALUES ( '"+ id +"', '"+extraInfo1TextField.getText()+"')");
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -269,14 +269,14 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert journal article information here.
                  try 
               {
-                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00");
                  LocalDate localDate = LocalDate.now();
                  stmt = con.createStatement();
-                 stmt.executeUpdate("INSERT INTO referencedocument (title, author, pages, publisher, publishYear, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+localDate+"')"); 
+                 stmt.executeUpdate("INSERT INTO referencedocument (documentType, title, author, pages, publisher, publishYear)"+" VALUES ('journalarticle', '"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+Integer.parseInt(pagesTextField.getText())+"', '"+publisherTextField.getText()+"', '"+Integer.parseInt(yearTextField.getText())+"')"); 
                  rs = stmt.executeQuery("SELECT documentID FROM referencedocument WHERE title = '"+ titleTextField.getText() +"' AND author = '"+ authorTextField.getText() +"'");
                  rs.next();
                  int id = rs.getInt("documentID");
-                 stmt.executeUpdate("INSERT INTO journalarticle (documentID, journalName, volume) VALUES ( '"+ id +"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");
+                 stmt.executeUpdate("INSERT INTO journalarticle (documentID, journalName, volume)"+" VALUES ( '"+ id +"', '"+extraInfo1TextField.getText()+"', '"+extraInfo2TextField.getText()+"')");
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -287,10 +287,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert magazine article information here.
                 try 
               {
-                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00");
                  LocalDate localDate = LocalDate.now();
                  stmt = con.createStatement();
-                 stmt.executeUpdate("INSERT INTO referencedocument (title, author, pages, publisher, publishYear, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+localDate+"')"); 
+                 stmt.executeUpdate("INSERT INTO referencedocument (documentType, title, author, pages, publisher, publishYear)"+" VALUES ('magazinearticle', '"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+Integer.parseInt(pagesTextField.getText())+"', '"+publisherTextField.getText()+"', '"+Integer.parseInt(yearTextField.getText())+"')"); 
                  rs = stmt.executeQuery("SELECT documentID FROM referencedocument WHERE title = '"+ titleTextField.getText() +"' AND author = '"+ authorTextField.getText() +"'");
                  rs.next();
                  int id = rs.getInt("documentID");
@@ -306,10 +306,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert web page information here.
                 try 
               {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00");
                  LocalDate localDate = LocalDate.now();
                  stmt = con.createStatement();
-                 stmt.executeUpdate("INSERT INTO referencedocument (title, author, pages, publisher, publishYear, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+localDate+"')"); 
+                 stmt.executeUpdate("INSERT INTO referencedocument (documentType, title, author, pages, publisher, publishYear)"+" VALUES ('webpage', '"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+Integer.parseInt(pagesTextField.getText())+"', '"+publisherTextField.getText()+"', '"+Integer.parseInt(yearTextField.getText())+"')"); 
                  rs = stmt.executeQuery("SELECT documentID FROM referencedocument WHERE title = '"+ titleTextField.getText() +"' AND author = '"+ authorTextField.getText() +"'");
                  rs.next();
                  int id = rs.getInt("documentID");
@@ -325,10 +325,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert conference proceeding information here.
                 try 
               {
-                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00");
                  LocalDate localDate = LocalDate.now();
                  stmt = con.createStatement();
-                 stmt.executeUpdate("INSERT INTO referencedocument (title, author, pages, publisher, publishYear, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+localDate+"')"); 
+                 stmt.executeUpdate("INSERT INTO referencedocument (documentType, title, author, pages, publisher, publishYear)"+" VALUES ('conferenceproceeding', '"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+Integer.parseInt(pagesTextField.getText())+"', '"+publisherTextField.getText()+"', '"+Integer.parseInt(yearTextField.getText())+"')"); 
                  rs = stmt.executeQuery("SELECT documentID FROM referencedocument WHERE title = '"+ titleTextField.getText() +"' AND author = '"+ authorTextField.getText() +"'");
                  rs.next();
                  int id = rs.getInt("documentID");
@@ -344,10 +344,10 @@ public class addManuallyform extends javax.swing.JFrame {
                 // Code to insert other document information here.
                 try 
               {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00");
                  LocalDate localDate = LocalDate.now();
                  stmt = con.createStatement();
-                 stmt.executeUpdate("INSERT INTO referencedocument (title, author, pages, publisher, publishYear, DateAdded)"+" VALUES ('"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+pagesTextField.getText()+"', '"+publisherTextField.getText()+"', '"+yearTextField.getText()+"', '"+localDate+"')"); 
+                 stmt.executeUpdate("INSERT INTO referencedocument (documentType, title, author, pages, publisher, publishYear)"+" VALUES ('other', '"+titleTextField.getText()+"', '"+authorTextField.getText()+"', '"+Integer.parseInt(pagesTextField.getText())+"', '"+publisherTextField.getText()+"', '"+Integer.parseInt(yearTextField.getText())+"')"); 
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -359,7 +359,7 @@ public class addManuallyform extends javax.swing.JFrame {
         this.setVisible(false);
         Library lib;
         lib = new Library();
-        lib.setVisible(true);
+        lib.RertiveDocuments();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void authorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTextFieldActionPerformed
