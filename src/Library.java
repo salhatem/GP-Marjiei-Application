@@ -1,6 +1,7 @@
 
 import java.sql.*;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.*;
 
@@ -25,6 +26,7 @@ public class Library extends javax.swing.JFrame {
     private Statement stmt;
     private ResultSet rs;
     String Query; 
+    
     
     public Library() {
         initComponents();
@@ -58,6 +60,7 @@ public class Library extends javax.swing.JFrame {
         model.addColumn("تاريخ الإضافة");
         model.addColumn("سنة النشر");
         model.addColumn("الناشر");
+        model.addColumn("الصفحات");
         model.addColumn("المؤلف");
         model.addColumn("العنوان");
     }
@@ -72,11 +75,12 @@ public class Library extends javax.swing.JFrame {
              {
                  String title = rs.getString("title");
                  String author = rs.getString("author");
+                 int pages = rs.getInt("pages");
                  String publisher = rs.getString("publisher");
                  int publishYear = rs.getInt("publishYear");
                  String dateAdded = rs.getString("DateAdded");
                  
-                 String[] docs = {dateAdded, publishYear+"", publisher, author, title};
+                 String[] docs = {dateAdded, publishYear+"", publisher ,pages+"", author, title};
                  model.addRow(docs);   
              }
              
@@ -101,7 +105,7 @@ public class Library extends javax.swing.JFrame {
           DocsList.setRowSorter(filter);
           filter.setRowFilter(RowFilter.regexFilter(key));
       }
-       
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,14 +130,14 @@ public class Library extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField6 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
@@ -156,6 +160,11 @@ public class Library extends javax.swing.JFrame {
             }
         ));
         DocsList.setToolTipText("مكتبة المراجع");
+        DocsList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DocsListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(DocsList);
 
         searchField.setToolTipText("بحث");
@@ -204,32 +213,53 @@ public class Library extends javax.swing.JFrame {
         jLabel1.setText("العنوان");
 
         jTextField1.setColumns(20);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setColumns(20);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("المؤلف");
 
         jLabel3.setText("الناشر");
 
-        jTextField3.setColumns(20);
-
         jTextField4.setColumns(20);
+
+        jTextField5.setColumns(20);
 
         jLabel4.setText("سنة النشر");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "كتاب", "مقال صحفي", "مقال مجلة", "صفحة ويب", "ورقة مؤتمر", "أخرى" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
-        jTextField6.setColumns(20);
+        jTextField3.setColumns(20);
 
         jLabel6.setText("الصفحات");
 
-        jLabel5.setText("extra1");
-
-        jTextField5.setColumns(20);
-
-        jLabel7.setText("extra2");
+        jTextField6.setColumns(20);
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jTextField7.setColumns(20);
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("إضافة");
         jMenuBar2.add(jMenu1);
@@ -247,38 +277,42 @@ public class Library extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7))
-                    .addComponent(editButton))
+                        .addGap(58, 58, 58)
+                        .addComponent(editButton)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
@@ -311,7 +345,7 @@ public class Library extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -345,24 +379,24 @@ public class Library extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(editButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -400,7 +434,26 @@ public class Library extends javax.swing.JFrame {
     }//GEN-LAST:event_addComboboxPopupMenuWillBecomeVisible
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
+     try{ 
+       
+         String value1= jTextField1.getText();
+         String value2= jTextField2.getText();
+         String value3= jTextField3.getText();
+         String value4= jTextField4.getText();
+         String value5= jTextField5.getText();
+        
+
+            String query = "update referencedocument set title='"+value1+"' , author='"+value2+"', pages='"+value3+"', publisher='"+value4+"', publishYear='"+value5+"' where title='"+value1+"' ";
+        PreparedStatement pst = con.prepareStatement(query);
+     pst.execute();
+
+     JOptionPane.showMessageDialog(null, "تم التحديث بنجاح");
+     }catch (Exception ex)
+          {
+              JOptionPane.showMessageDialog(null, ex);
+          }
+       
+     
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
@@ -408,6 +461,109 @@ public class Library extends javax.swing.JFrame {
         String key = searchField.getText();
         Search(key);
     }//GEN-LAST:event_searchFieldKeyReleased
+  
+          
+     // End RertiveDocuments()   
+    private void DocsListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DocsListMouseClicked
+         // TODO add your handling code here:
+    int i = DocsList.getSelectedRow();
+      TableModel model = DocsList.getModel();  
+        
+         // Display Slected Row In JTexteFields
+        jTextField5.setText(model.getValueAt(i,1).toString());
+        jTextField4.setText(model.getValueAt(i,2).toString());
+        jTextField3.setText(model.getValueAt(i,3).toString());
+        jTextField2.setText(model.getValueAt(i,4).toString());
+        jTextField1.setText(model.getValueAt(i,5).toString());
+       
+       
+  
+ 
+
+    }//GEN-LAST:event_DocsListMouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+ int index = jComboBox1.getSelectedIndex();
+        switch ( index )
+        {
+            case 0:
+            // Code for show Book form
+               jLabel5.setText("الطبعة");
+               jLabel5.setVisible(true);
+               jTextField6.setVisible(true);
+               jLabel7.setVisible(false);
+               jTextField7.setVisible(false);
+              
+             
+             break;
+            case 1:
+            // Code for show Journal Article form
+               jLabel5.setText("الصحيفة");
+               jLabel5.setVisible(true);
+               jTextField6.setVisible(true);
+                jLabel7.setText("الحجم");
+               jLabel7.setVisible(true);
+               jTextField7.setVisible(true);
+
+            break;
+            case 2:
+            // Code for show Magazine Article form
+               jLabel5.setText("المجبة");
+               jLabel5.setVisible(true);
+               jTextField6.setVisible(true);
+                jLabel7.setText("الشهر");
+               jLabel7.setVisible(true);
+               jTextField7.setVisible(true);
+                
+            break;
+            case 3:
+            // Code for show Web Page form
+                jLabel5.setText("الرابط");
+               jLabel5.setVisible(true);
+               jTextField6.setVisible(true);
+                jLabel7.setText("تاريخ الوصول");
+               jLabel7.setVisible(true);
+               jTextField7.setVisible(true);
+                
+            break;
+            case 4:
+            // Code for show Conference Proceeding form
+                jLabel5.setText("المؤتمر");
+               jLabel5.setVisible(true);
+               jTextField6.setVisible(true);
+                jLabel7.setText("المكان");
+               jLabel7.setVisible(true);
+               jTextField7.setVisible(true);
+               
+            break;
+            case 5:
+            // Code for show Other Document form
+              jLabel5.setVisible(false);
+               jTextField6.setVisible(false);
+               jLabel7.setVisible(false);
+               jTextField7.setVisible(false);
+        } // End Switch Statment.
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+                // TODO add your handling code here:
+                jTextField6.setVisible(false);
+                
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+         jTextField7.setVisible(false);
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -476,4 +632,8 @@ public class Library extends javax.swing.JFrame {
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel searchIcon;
     // End of variables declaration//GEN-END:variables
+
+    private void executeSQlQuery(String query, String updated) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
