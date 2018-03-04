@@ -94,6 +94,7 @@ public class addManuallyform extends javax.swing.JFrame {
         titleLabel.setText("العنوان");
 
         titleTextField.setColumns(10);
+        titleTextField.setToolTipText("");
 
         authorLabel.setText("المؤلف");
 
@@ -259,7 +260,7 @@ public class addManuallyform extends javax.swing.JFrame {
                  rs = stmt.executeQuery("SELECT documentID FROM referencedocument WHERE title = '"+ titleTextField.getText() +"' AND author = '"+ authorTextField.getText() +"'");
                  rs.next();
                  int id = rs.getInt("documentID");
-                 stmt.executeUpdate("INSERT INTO book (documentID, edition)"+" VALUES ( '"+ id +"', '"+extraInfo1TextField.getText()+"')");
+                 stmt.executeUpdate("INSERT INTO book (documentID, edition)"+" VALUES ( '"+ id +"', '"+Integer.parseInt(extraInfo1TextField.getText())+"')");
               } catch (Exception ex)
                   {
                     System.out.println(ex.getMessage());
@@ -354,12 +355,13 @@ public class addManuallyform extends javax.swing.JFrame {
                   }
                 
                 break; 
-        }
+        } // End of switch
         
         this.setVisible(false);
-        Library lib;
-        lib = new Library();
-        lib.RertiveDocuments();
+         Library lib;
+         lib = new Library();
+         lib.setVisible(false);
+         lib.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void authorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTextFieldActionPerformed
@@ -369,9 +371,6 @@ public class addManuallyform extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Library lib;
-        lib = new Library();
-        lib.setVisible(true);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseClicked

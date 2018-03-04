@@ -137,9 +137,19 @@ public class Library extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        fileMenu = new javax.swing.JMenu();
+        addDocMenuItem = new javax.swing.JMenuItem();
+        manuallyMenuItem = new javax.swing.JMenuItem();
+        newFolderMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        editDocMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        deleteDocMenuItem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        exitMenuItem = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        helpMenu = new javax.swing.JMenu();
+        helpMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("مكتبة مرجعي");
@@ -231,14 +241,55 @@ public class Library extends javax.swing.JFrame {
 
         jTextField7.setColumns(20);
 
-        jMenu1.setText("إضافة");
-        jMenuBar2.add(jMenu1);
+        fileMenu.setText("ملف");
+
+        addDocMenuItem.setText("إضافة وثيقة");
+        addDocMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDocMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(addDocMenuItem);
+
+        manuallyMenuItem.setText("إدخال يدوي");
+        manuallyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manuallyMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(manuallyMenuItem);
+
+        newFolderMenuItem.setText("إنشاء مجلد");
+        fileMenu.add(newFolderMenuItem);
+        fileMenu.add(jSeparator1);
+
+        editDocMenuItem.setText("تعديل وثيقة");
+        fileMenu.add(editDocMenuItem);
+        fileMenu.add(jSeparator2);
+
+        deleteDocMenuItem.setText("حذف وثيقة");
+        fileMenu.add(deleteDocMenuItem);
+        fileMenu.add(jSeparator3);
+
+        exitMenuItem.setText("خروج");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exitMenuItem);
+
+        jMenuBar2.add(fileMenu);
 
         jMenu4.setText("تعديل");
         jMenuBar2.add(jMenu4);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/helpIcon.png"))); // NOI18N
-        jMenuBar2.add(jMenu2);
+        helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/helpIcon.png"))); // NOI18N
+
+        helpMenuItem.setText("مساعدة");
+        helpMenu.add(helpMenuItem);
+
+        jMenuBar2.add(helpMenu);
 
         setJMenuBar(jMenuBar2);
 
@@ -409,6 +460,20 @@ public class Library extends javax.swing.JFrame {
         Search(key);
     }//GEN-LAST:event_searchFieldKeyReleased
 
+    private void addDocMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addDocMenuItemActionPerformed
+
+    private void manuallyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manuallyMenuItemActionPerformed
+        // TODO add your handling code here:
+        addManuallyform frame = new addManuallyform();
+            frame.setVisible(true);
+    }//GEN-LAST:event_manuallyMenuItemActionPerformed
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -448,10 +513,17 @@ public class Library extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DocsList;
     private javax.swing.JComboBox<String> addCombobox;
+    private javax.swing.JMenuItem addDocMenuItem;
     private javax.swing.JLabel addIcon;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JMenuItem deleteDocMenuItem;
     private javax.swing.JLabel deleteIcon;
     private javax.swing.JButton editButton;
+    private javax.swing.JMenuItem editDocMenuItem;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JButton interfaceLanguageButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -461,11 +533,12 @@ public class Library extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -473,6 +546,8 @@ public class Library extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JMenuItem manuallyMenuItem;
+    private javax.swing.JMenuItem newFolderMenuItem;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel searchIcon;
     // End of variables declaration//GEN-END:variables
