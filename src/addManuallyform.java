@@ -358,10 +358,10 @@ public class addManuallyform extends javax.swing.JFrame {
         } // End of switch
         
         this.setVisible(false);
-     /*    Library lib;
+         Library lib;
          lib = new Library();
          lib.setVisible(false);
-         lib.setVisible(true); */
+         lib.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void authorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorTextFieldActionPerformed
