@@ -1,8 +1,12 @@
 
 import java.sql.*;
+import javax.swing.table.*;
+import java.awt.HeadlessException;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.RowFilter;
-import javax.swing.table.*;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,7 +28,7 @@ public class Library extends javax.swing.JFrame {
     private Connection con; 
     private Statement stmt;
     private ResultSet rs;
-    String Query; 
+    String Query, fName = ""; ; 
     
     public Library() {
         initComponents();
@@ -431,7 +435,29 @@ public class Library extends javax.swing.JFrame {
         {
             case 0:
             // Code for importing file here.
-
+              try 
+              {
+            JFileChooser chooser = new JFileChooser();
+            
+            //*****************filter***********************
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Pdf file(.pdf)", "pdf");
+            chooser.setFileFilter(filter);
+            
+            //*****************JFileChooser*****************
+            int returnValue = chooser.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+            fName = chooser.getSelectedFile().getPath();
+            }
+            
+            //**************get PDF file info***************
+            PDFManager pdfManager = new PDFManager();
+            pdfManager.setFilePath(fName);
+            pdfManager.ToText();
+            
+            } catch (HeadlessException | IOException ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
             break;
             case 1:
             // Code for add entry manually here.
