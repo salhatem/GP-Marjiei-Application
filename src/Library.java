@@ -73,6 +73,7 @@ public class Library extends javax.swing.JFrame {
              rs = stmt.executeQuery(Query);
              while (rs.next())
              {
+               
                  String title = rs.getString("title");
                  String author = rs.getString("author");
                  int pages = rs.getInt("pages");
@@ -198,6 +199,11 @@ public class Library extends javax.swing.JFrame {
 
         deleteButton.setText("حذف وثيقة");
         deleteButton.setToolTipText("حذف");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         addIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/addIcon.png"))); // NOI18N
 
@@ -378,14 +384,8 @@ public class Library extends javax.swing.JFrame {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
      try{ 
        
-         String value1= jTextField1.getText();
-         String value2= jTextField2.getText();
-         String value3= jTextField3.getText();
-         String value4= jTextField4.getText();
-         String value5= jTextField5.getText();
-        
 
-            String query = "update referencedocument set title='"+value1+"' , author='"+value2+"', pages='"+value3+"', publisher='"+value4+"', publishYear='"+value5+"' where title='"+value1+"' ";
+            String query = "update referencedocument set title='"+jTextField1.getText()+"' , author='"+jTextField2.getText()+"', pages='"+jTextField3.getText()+"', publisher='"+jTextField4.getText()+"', publishYear='"+jTextField5.getText()+"' where title='"+jTextField1.getText()+"' ";
         PreparedStatement pst = con.prepareStatement(query);
      pst.execute();
 
@@ -423,6 +423,10 @@ public class Library extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+     
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments

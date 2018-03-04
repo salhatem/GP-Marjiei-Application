@@ -259,6 +259,9 @@
         <Property name="text" type="java.lang.String" value="&#x62d;&#x630;&#x641; &#x648;&#x62b;&#x64a;&#x642;&#x629;"/>
         <Property name="toolTipText" type="java.lang.String" value="&#x62d;&#x630;&#x641;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="addIcon">
       <Properties>
