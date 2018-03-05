@@ -3,6 +3,7 @@ import java.sql.*;
 import javax.swing.table.*;
 import java.awt.HeadlessException;
 import java.io.IOException;
+import javafx.application.Platform;
 import javax.swing.ImageIcon;
 import javax.swing.RowFilter;
 import javax.swing.JFileChooser;
@@ -142,8 +143,9 @@ public class Library extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        addDocMenuItem = new javax.swing.JMenuItem();
-        manuallyMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         newFolderMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         editDocMenuItem = new javax.swing.JMenuItem();
@@ -151,7 +153,6 @@ public class Library extends javax.swing.JFrame {
         deleteDocMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         helpMenuItem = new javax.swing.JMenuItem();
 
@@ -179,7 +180,7 @@ public class Library extends javax.swing.JFrame {
             }
         });
 
-        addCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "إضافة وثيقة", "إدخال يدوي", "إنشاء مجلد" }));
+        addCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "إضافة وثيقة", "إدخال يدوي" }));
         addCombobox.setToolTipText("إضافة");
         addCombobox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -247,21 +248,25 @@ public class Library extends javax.swing.JFrame {
 
         fileMenu.setText("ملف");
 
-        addDocMenuItem.setText("إضافة وثيقة");
-        addDocMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDocMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(addDocMenuItem);
+        jMenu1.setText("إضافة");
 
-        manuallyMenuItem.setText("إدخال يدوي");
-        manuallyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("إضافة وثيقة");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manuallyMenuItemActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        fileMenu.add(manuallyMenuItem);
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("إدخال يدوي");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        fileMenu.add(jMenu1);
 
         newFolderMenuItem.setText("إنشاء مجلد");
         fileMenu.add(newFolderMenuItem);
@@ -284,9 +289,6 @@ public class Library extends javax.swing.JFrame {
         fileMenu.add(exitMenuItem);
 
         jMenuBar2.add(fileMenu);
-
-        jMenu4.setText("تعديل");
-        jMenuBar2.add(jMenu4);
 
         helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/helpIcon.png"))); // NOI18N
 
@@ -466,9 +468,7 @@ public class Library extends javax.swing.JFrame {
 
           //  this.setVisible(false);
             break;
-            case 2:
-            // Code for creating folder here.
-
+      
         } // End Switch Statment.
     }//GEN-LAST:event_addComboboxActionPerformed
 
@@ -486,19 +486,50 @@ public class Library extends javax.swing.JFrame {
         Search(key);
     }//GEN-LAST:event_searchFieldKeyReleased
 
-    private void addDocMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addDocMenuItemActionPerformed
-
-    private void manuallyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manuallyMenuItemActionPerformed
-        // TODO add your handling code here:
-        addManuallyform frame = new addManuallyform();
-            frame.setVisible(true);
-    }//GEN-LAST:event_manuallyMenuItemActionPerformed
-
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         // TODO add your handling code here:
+        Platform.exit();
+        System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+        // Code for add entry manually here.
+            addManuallyform frame = new addManuallyform();
+            frame.setVisible(true);
+            
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+         // Code for importing file here.
+              try 
+              {
+            JFileChooser chooser = new JFileChooser();
+            
+            //*****************filter***********************
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Pdf file(.pdf)", "pdf");
+            chooser.setFileFilter(filter);
+            
+            //*****************JFileChooser*****************
+            int returnValue = chooser.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+            fName = chooser.getSelectedFile().getPath();
+            }
+            
+            //**************get PDF file info***************
+            PDFManager pdfManager = new PDFManager();
+            pdfManager.setFilePath(fName);
+            pdfManager.ToText();
+            
+            } catch (HeadlessException | IOException ex)
+                  {
+                    System.out.println(ex.getMessage());
+                  }
+              
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -539,7 +570,6 @@ public class Library extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DocsList;
     private javax.swing.JComboBox<String> addCombobox;
-    private javax.swing.JMenuItem addDocMenuItem;
     private javax.swing.JLabel addIcon;
     private javax.swing.JButton deleteButton;
     private javax.swing.JMenuItem deleteDocMenuItem;
@@ -559,8 +589,10 @@ public class Library extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -572,7 +604,6 @@ public class Library extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JMenuItem manuallyMenuItem;
     private javax.swing.JMenuItem newFolderMenuItem;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel searchIcon;

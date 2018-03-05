@@ -9,22 +9,29 @@
             <Property name="text" type="java.lang.String" value="&#x645;&#x644;&#x641;"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="addDocMenuItem">
+            <Menu class="javax.swing.JMenu" name="jMenu1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x648;&#x62b;&#x64a;&#x642;&#x629;"/>
+                <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629;"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addDocMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="manuallyMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="&#x625;&#x62f;&#x62e;&#x627;&#x644; &#x64a;&#x62f;&#x648;&#x64a;"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manuallyMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x648;&#x62b;&#x64a;&#x642;&#x629;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="&#x625;&#x62f;&#x62e;&#x627;&#x644; &#x64a;&#x62f;&#x648;&#x64a;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="newFolderMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x625;&#x646;&#x634;&#x627;&#x621; &#x645;&#x62c;&#x644;&#x62f;"/>
@@ -55,11 +62,6 @@
               </Events>
             </MenuItem>
           </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x64a;&#x644;"/>
-          </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
@@ -302,10 +304,9 @@
     <Component class="javax.swing.JComboBox" name="addCombobox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="2">
             <StringItem index="0" value="&#x625;&#x636;&#x627;&#x641;&#x629; &#x648;&#x62b;&#x64a;&#x642;&#x629;"/>
             <StringItem index="1" value="&#x625;&#x62f;&#x62e;&#x627;&#x644; &#x64a;&#x62f;&#x648;&#x64a;"/>
-            <StringItem index="2" value="&#x625;&#x646;&#x634;&#x627;&#x621; &#x645;&#x62c;&#x644;&#x62f;"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="&#x625;&#x636;&#x627;&#x641;&#x629;"/>
